@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  nginx:
+    build: ./nginx/
+    container_name: sneakerator-nginx
+    working_dir: /home/sneakerator
+    ports:
+      - 7005:80
+    volumes:
+      - ./src:/home/sneakerator
+  php:
+    build: ./php/
+    container_name: sneakerator-php
+    working_dir: /home/sneakerator
+    volumes:
+      - ./src:/home/sneakerator
+      - ./src/storage/logs/php-fpm:/var/log/php-fpm
+    env_file:
+      - ./src/.env
+  db:
+    container_name: sneakerator-db
+    image: mariadb:10.7.1
+    env_file:
+      - ./mysql/.env
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - 7006:3306
