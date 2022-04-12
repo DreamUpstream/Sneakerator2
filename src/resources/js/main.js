@@ -1,5 +1,4 @@
 import { createApp } from "vue";
-
 import App from "./App.vue";
 // Component example:
 // import InputEnterable from './components/inputs/InputEnterable.vue';
