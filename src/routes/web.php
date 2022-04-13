@@ -17,8 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::view('/dashboard/{vue?}', 'dashboard')->where('vue', '[\/\w\.-]*')->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

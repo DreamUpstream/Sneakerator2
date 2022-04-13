@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user-name" content="{{ Auth::user()->name }}">
+    
+    <meta name="user-id" content="{{ Auth::user()->id }}">
+    <meta name="user-tokens" content="{{ Auth::user()->tokens }}">
+    <meta name="user-profit" content="{{ Auth::user()->profit_margin }}">
+    
+    <meta name="user-email" content="{{ Auth::user()->email }}">
+    <meta name="user-password" content="{{ Auth::user()->password }}">
     <title>Sneakerator</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('storage/img/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('storage/img/favicon.ico') }}">
     <link rel="stylesheet" href=" {{ mix('css/dashboard.css') }} ">
 
     <script>

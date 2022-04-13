@@ -23,59 +23,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // window.addEventListener("load", () => {
-//     (function () {
-//         "use strict";
-//         feather.replace({ "aria-hidden": "true" });
-//         // Graphs
-//         var ctx = document.getElementById("myChart");
-//         // eslint-disable-next-line no-unused-vars
-//         var myChart = new Chart(ctx, {
-//             type: "line",
-//             data: {
-//                 labels: [
-//                     "Sunday",
-//                     "Monday",
-//                     "Tuesday",
-//                     "Wednesday",
-//                     "Thursday",
-//                     "Friday",
-//                     "Saturday",
-//                 ],
-//                 datasets: [
-//                     {
-//                         data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-//                         lineTension: 0,
-//                         backgroundColor: "transparent",
-//                         borderColor: "#007bff",
-//                         borderWidth: 4,
-//                         pointBackgroundColor: "#007bff",
-//                     },
-//                 ],
-//             },
-//             options: {
-//                 scales: {
-//                     yAxes: [
-//                         {
-//                             ticks: {
-//                                 beginAtZero: false,
-//                             },
-//                         },
-//                     ],
-//                 },
-//                 legend: {
-//                     display: false,
-//                 },
-//             },
-//         });
-//     })();
-// });
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    window.addEventListener("load", function () {
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       feather_icons__WEBPACK_IMPORTED_MODULE_1___default().replace();
     });
     var state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
@@ -93,26 +46,17 @@ __webpack_require__.r(__webpack_exports__);
           return index === self.findIndex(function (t) {
             return t.styleId === products.styleId;
           });
-        }); // state.foundResults = response.data.Products;
-
+        });
         state.searchSuccess = true;
         state.loading = false;
-      });
-    }
-
-    function filterResults() {
-      var clean = arr.filter(function (arr, index, self) {
-        return index === self.findIndex(function (t) {
-          return t.save === arr.save && t.State === arr.State;
-        });
       });
     }
 
     var __returned__ = {
       state: state,
       search: search,
-      filterResults: filterResults,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       feather: (feather_icons__WEBPACK_IMPORTED_MODULE_1___default()),
       Chart: (chart_js__WEBPACK_IMPORTED_MODULE_2___default()),
       axios: (axios__WEBPACK_IMPORTED_MODULE_3___default()),
@@ -207,18 +151,23 @@ var _hoisted_18 = {
 var _hoisted_19 = {
   "class": "col-md-8"
 };
-var _hoisted_20 = {
-  "class": "list-unstyled"
-};
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "btn btn-success bg-gradient",
-  type: "button"
-}, " Analyse 🔎 ", -1
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1
+var _hoisted_21 = {
+  "class": "list-unstyled"
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "btn btn-success bg-gradient",
+  type: "button"
+}, " Analyse 🛢️5 ", -1
+/* HOISTED */
+);
+
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1
 /* HOISTED */
 );
 
@@ -252,13 +201,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.foundResults && result.category), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.foundResults && result.colorway) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.foundResults && result.styleId), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.foundResults && result.colorway) + " ", 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, " 🔥 Sales in last 24 hours: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.foundResults && result.market.salesLast72Hours), 1
+    ), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.foundResults && result.styleId), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, " 🔥 Sales in last 24 hours: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.foundResults && result.market.salesLast72Hours), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, " 💸 Last sale: $" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.foundResults && result.market.lastSale), 1
     /* TEXT */
-    )]), _hoisted_21])]), _hoisted_22]);
+    )]), _hoisted_22])]), _hoisted_23]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <canvas\n            class=\"my-4 w-100\"\n            id=\"myChart\"\n            width=\"900\"\n            height=\"380\"\n        ></canvas> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h2>Section title</h2>\n        <div class=\"table-responsive\">\n            <table class=\"table table-striped table-sm\">\n                <thead>\n                    <tr>\n                        <th scope=\"col\">#</th>\n                        <th scope=\"col\">Header</th>\n                        <th scope=\"col\">Header</th>\n                        <th scope=\"col\">Header</th>\n                        <th scope=\"col\">Header</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <td>1,001</td>\n                        <td>random</td>\n                        <td>data</td>\n                        <td>placeholder</td>\n                        <td>text</td>\n                    </tr>\n                    <tr>\n                        <td>1,002</td>\n                        <td>placeholder</td>\n                        <td>irrelevant</td>\n                        <td>visual</td>\n                        <td>layout</td>\n                    </tr>\n                    <tr>\n                        <td>1,003</td>\n                        <td>data</td>\n                        <td>rich</td>\n                        <td>dashboard</td>\n                        <td>tabular</td>\n                    </tr>\n                    <tr>\n                        <td>1,003</td>\n                        <td>information</td>\n                        <td>placeholder</td>\n                        <td>illustrative</td>\n                        <td>data</td>\n                    </tr>\n                    <tr>\n                        <td>1,004</td>\n                        <td>text</td>\n                        <td>random</td>\n                        <td>layout</td>\n                        <td>dashboard</td>\n                    </tr>\n                    <tr>\n                        <td>1,005</td>\n                        <td>dashboard</td>\n                        <td>irrelevant</td>\n                        <td>text</td>\n                        <td>placeholder</td>\n                    </tr>\n                    <tr>\n                        <td>1,006</td>\n                        <td>dashboard</td>\n                        <td>illustrative</td>\n                        <td>rich</td>\n                        <td>data</td>\n                    </tr>\n                    <tr>\n                        <td>1,007</td>\n                        <td>placeholder</td>\n                        <td>tabular</td>\n                        <td>information</td>\n                        <td>irrelevant</td>\n                    </tr>\n                    <tr>\n                        <td>1,008</td>\n                        <td>random</td>\n                        <td>data</td>\n                        <td>placeholder</td>\n                        <td>text</td>\n                    </tr>\n                    <tr>\n                        <td>1,009</td>\n                        <td>placeholder</td>\n                        <td>irrelevant</td>\n                        <td>visual</td>\n                        <td>layout</td>\n                    </tr>\n                    <tr>\n                        <td>1,010</td>\n                        <td>data</td>\n                        <td>rich</td>\n                        <td>dashboard</td>\n                        <td>tabular</td>\n                    </tr>\n                    <tr>\n                        <td>1,011</td>\n                        <td>information</td>\n                        <td>placeholder</td>\n                        <td>illustrative</td>\n                        <td>data</td>\n                    </tr>\n                    <tr>\n                        <td>1,012</td>\n                        <td>text</td>\n                        <td>placeholder</td>\n                        <td>layout</td>\n                        <td>dashboard</td>\n                    </tr>\n                    <tr>\n                        <td>1,013</td>\n                        <td>dashboard</td>\n                        <td>irrelevant</td>\n                        <td>text</td>\n                        <td>visual</td>\n                    </tr>\n                    <tr>\n                        <td>1,014</td>\n                        <td>dashboard</td>\n                        <td>illustrative</td>\n                        <td>rich</td>\n                        <td>data</td>\n                    </tr>\n                    <tr>\n                        <td>1,015</td>\n                        <td>random</td>\n                        <td>tabular</td>\n                        <td>information</td>\n                        <td>text</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div> ")]);

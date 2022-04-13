@@ -1,7 +1,24 @@
 <script setup>
 import axios from "axios";
 let logoutUrl = ROOT_URL;
-function logout() {}
+function logout() {
+    axios.post(logoutUrl + "/logout").then((response) => {
+        console.log(response);
+        window.location.replace(ROOT_URL);
+    });
+}
+
+function getMeta(metaName) {
+    const metas = document.getElementsByTagName("meta");
+
+    for (let i = 0; i < metas.length; i++) {
+        if (metas[i].getAttribute("name") === metaName) {
+            return metas[i].getAttribute("content");
+        }
+    }
+
+    return "";
+}
 </script>
 
 <template>
@@ -10,9 +27,11 @@ function logout() {}
             class="navbar navbar-dark sticky-top sneakerator-darker flex-md-nowrap p-0 shadow"
         >
             <div
-                class="navbar-brand col-md-3 col-lg-2 me-0 px-3 bg-success bg-gradient shadow"
+                class="navbar-brand col-md-3 col-lg-2 me-0 px-3 bg-success bg-gradient shadow text-center"
             >
-                Gabrielius
+                {{ getMeta("user-name") }}
+                <span data-feather="database" style="margin-bottom: 2px"></span
+                >{{ getMeta("user-tokens") }}
             </div>
             <button
                 class="navbar-toggler position-absolute d-md-none collapsed"
@@ -28,7 +47,9 @@ function logout() {}
             <div class="w-100" />
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" @click="logout()">Sign out</a>
+                    <a class="nav-link px-3" @click="logout()" href="#"
+                        >Sign out</a
+                    >
                 </div>
             </div>
         </header>

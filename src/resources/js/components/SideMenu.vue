@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+</script>
 
 <template>
     <nav
@@ -8,16 +10,28 @@
         <div class="position-sticky pt-3">
             <ul class="nav flex-column">
                 <li class="nav-item mt-2">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <span data-feather="search"></span>
-                        Analyse
-                    </a>
+                    <router-link
+                        class="nav-link"
+                        :to="{
+                            name: 'home',
+                        }"
+                        ><span data-feather="search"> </span>
+                        Analyse</router-link
+                    >
                 </li>
                 <li class="nav-item mt-2">
-                    <a class="nav-link" href="#">
+                    <!-- <a class="nav-link" href="#">
                         <span data-feather="dollar-sign"></span>
                         Selling
-                    </a>
+                    </a> -->
+                    <router-link
+                        class="nav-link"
+                        :to="{
+                            name: 'selling',
+                        }"
+                        ><span data-feather="dollar-sign"> </span>
+                        Selling</router-link
+                    >
                 </li>
                 <li class="nav-item mt-2">
                     <a class="nav-link" href="#">

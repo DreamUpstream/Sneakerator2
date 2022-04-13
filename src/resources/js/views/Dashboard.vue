@@ -1,63 +1,14 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 import feather from "feather-icons";
 import Chart from "chart.js";
 import axios from "axios";
-
 import SideMenu from "../components/SideMenu.vue";
 
-// window.addEventListener("load", () => {
-//     (function () {
-//         "use strict";
-
-//         feather.replace({ "aria-hidden": "true" });
-
-//         // Graphs
-//         var ctx = document.getElementById("myChart");
-//         // eslint-disable-next-line no-unused-vars
-//         var myChart = new Chart(ctx, {
-//             type: "line",
-//             data: {
-//                 labels: [
-//                     "Sunday",
-//                     "Monday",
-//                     "Tuesday",
-//                     "Wednesday",
-//                     "Thursday",
-//                     "Friday",
-//                     "Saturday",
-//                 ],
-//                 datasets: [
-//                     {
-//                         data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-//                         lineTension: 0,
-//                         backgroundColor: "transparent",
-//                         borderColor: "#007bff",
-//                         borderWidth: 4,
-//                         pointBackgroundColor: "#007bff",
-//                     },
-//                 ],
-//             },
-//             options: {
-//                 scales: {
-//                     yAxes: [
-//                         {
-//                             ticks: {
-//                                 beginAtZero: false,
-//                             },
-//                         },
-//                     ],
-//                 },
-//                 legend: {
-//                     display: false,
-//                 },
-//             },
-//         });
-//     })();
-// });
-window.addEventListener("load", () => {
+onMounted(() => {
     feather.replace();
 });
+
 const state = reactive({
     loading: false,
     searchQuery: "",
@@ -76,18 +27,9 @@ function search() {
                     index ===
                     self.findIndex((t) => t.styleId === products.styleId)
             );
-            // state.foundResults = response.data.Products;
             state.searchSuccess = true;
             state.loading = false;
         });
-}
-
-function filterResults() {
-    let clean = arr.filter(
-        (arr, index, self) =>
-            index ===
-            self.findIndex((t) => t.save === arr.save && t.State === arr.State)
-    );
 }
 </script>
 
@@ -148,7 +90,8 @@ function filterResults() {
                                 {{ state.foundResults && result.category }}
                             </p>
                             <p class="col-md-8">
-                                {{ state.foundResults && result.colorway }} |
+                                {{ state.foundResults && result.colorway }}
+                                <br />
                                 {{ state.foundResults && result.styleId }}
                             </p>
                             <ul class="list-unstyled">
@@ -170,7 +113,7 @@ function filterResults() {
                                 class="btn btn-success bg-gradient"
                                 type="button"
                             >
-                                Analyse 🔎
+                                Analyse 🛢️5
                             </button>
                         </div>
                     </div>

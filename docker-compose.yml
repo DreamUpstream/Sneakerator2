@@ -26,3 +26,9 @@ services:
       - ./mysql/data:/var/lib/mysql
     ports:
       - 7006:3306
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    ports:
+      - "8003:1025"
+      - "8100:8025"
