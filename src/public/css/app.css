@@ -781,6 +781,15 @@ select {
 .w-6 {
   width: 1.5rem;
 }
+.w-32 {
+  width: 8rem;
+}
+.w-1 {
+  width: 0.25rem;
+}
+.w-40 {
+  width: 10rem;
+}
 .max-w-xl {
   max-width: 36rem;
 }
@@ -789,6 +798,9 @@ select {
 }
 .max-w-7xl {
   max-width: 80rem;
+}
+.max-w-md {
+  max-width: 28rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -931,6 +943,9 @@ select {
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+.bg-cover {
+  background-size: cover;
 }
 .fill-current {
   fill: currentColor;

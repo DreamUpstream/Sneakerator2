@@ -59,33 +59,43 @@ window.addEventListener("load", () => {
     feather.replace();
 });
 const state = reactive({
-    sneakerCode: "",
-});
-
-const searchResults = reactive({
-    sneakerPhoto: [],
-    sneakerName: [],
-    sneakerBrand: [],
+    loading: false,
+    searchQuery: "",
+    foundResults: undefined,
+    searchSuccess: false,
 });
 
 function search() {
-    console.log(state.sneakerCode);
+    state.loading = true;
     axios
-        .get(`https://stockx.com/api/browse?_search=${state.sneakerCode}`)
+        .get(`https://stockx.com/api/browse?_search=${state.searchQuery}`)
         .then((response) => {
-            let products = response.products;
-            searchResults.sneakerName = products[0].name;
+            let products = response.data.Products;
+            state.foundResults = products.filter(
+                (products, index, self) =>
+                    index ===
+                    self.findIndex((t) => t.styleId === products.styleId)
+            );
+            // state.foundResults = response.data.Products;
+            state.searchSuccess = true;
+            state.loading = false;
         });
 }
 
-function renderResults() {}
+function filterResults() {
+    let clean = arr.filter(
+        (arr, index, self) =>
+            index ===
+            self.findIndex((t) => t.save === arr.save && t.State === arr.State)
+    );
+}
 </script>
 
 <template>
     <div>
         <div class="row d-flex justify-content-center text-center">
             <div class="col-md-6">
-                <h4 class="mt-5">Enter a sneaker to start:</h4>
+                <h4 class="mt-5 mb-3">Enter sneaker name to start:</h4>
                 <div class="input-group d-flex justify-content-center mt-2">
                     <div class="form-outline">
                         <input
@@ -93,7 +103,7 @@ function renderResults() {}
                             id="sneakerSearch"
                             class="form-control"
                             placeholder="Search"
-                            v-model="state.sneakerCode"
+                            v-model="state.searchQuery"
                         />
                     </div>
                     <button
@@ -106,7 +116,68 @@ function renderResults() {}
                 </div>
             </div>
         </div>
-
+        <div v-if="state.loading" class="d-flex justify-content-center mt-3">
+            <div class="loader"></div>
+        </div>
+        <div
+            v-if="state.searchSuccess"
+            class="mt-2 col-12 d-flex justify-content-center"
+        >
+            <div class="mt-2 col-10">
+                <div
+                    v-for="result in state.foundResults.slice(0, 10)"
+                    :key="result"
+                >
+                    <div
+                        class="container-fluid py-2 d-flex flex-md-row flex-column"
+                    >
+                        <div class="col-8 col-md-4 me-md-5">
+                            <img
+                                :src="
+                                    state.foundResults && result.media.imageUrl
+                                "
+                                class="rounded img-fluid"
+                                alt="..."
+                            />
+                        </div>
+                        <div class="col-6 ms-5">
+                            <h4 class="fw-bold">
+                                {{ state.foundResults && result.name }}
+                            </h4>
+                            <p class="col-md-8">
+                                {{ state.foundResults && result.category }}
+                            </p>
+                            <p class="col-md-8">
+                                {{ state.foundResults && result.colorway }} |
+                                {{ state.foundResults && result.styleId }}
+                            </p>
+                            <ul class="list-unstyled">
+                                <li>
+                                    🔥 Sales in last 24 hours:
+                                    {{
+                                        state.foundResults &&
+                                        result.market.salesLast72Hours
+                                    }}
+                                </li>
+                                <li>
+                                    💸 Last sale: ${{
+                                        state.foundResults &&
+                                        result.market.lastSale
+                                    }}
+                                </li>
+                            </ul>
+                            <button
+                                class="btn btn-success bg-gradient"
+                                type="button"
+                            >
+                                Analyse 🔎
+                            </button>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
         <!-- <canvas
             class="my-4 w-100"
             id="myChart"

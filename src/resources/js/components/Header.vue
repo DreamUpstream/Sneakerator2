@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+import axios from "axios";
+let logoutUrl = ROOT_URL;
+function logout() {}
+</script>
 
 <template>
     <div>
@@ -8,7 +12,7 @@
             <div
                 class="navbar-brand col-md-3 col-lg-2 me-0 px-3 bg-success bg-gradient shadow"
             >
-                Company name
+                Gabrielius
             </div>
             <button
                 class="navbar-toggler position-absolute d-md-none collapsed"
@@ -24,7 +28,7 @@
             <div class="w-100" />
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="#">Sign out</a>
+                    <a class="nav-link px-3" @click="logout()">Sign out</a>
                 </div>
             </div>
         </header>
