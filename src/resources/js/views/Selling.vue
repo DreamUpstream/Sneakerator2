@@ -1,20 +1,21 @@
 <script setup>
-import { reactive, onMounted, ref } from "vue";
+import { reactive, onMounted, onUpdated, ref, nextTick } from "vue";
 import feather from "feather-icons";
 import axios from "axios";
 import SideMenu from "../components/SideMenu.vue";
 import Manage from "./Manage";
 import ManageModal from "../components/ManageModal";
 
-window.addEventListener("load", () => {
-    feather.replace();
-});
-onMounted(() => {
-    feather.replace();
+const state = reactive({ loading: true, sneakers: undefined });
 
+onMounted(() => {
     getSneakers();
 });
-const state = reactive({ loading: true });
+
+onUpdated(() => {
+    feather.replace();
+});
+
 const showModal = ref(false);
 function getMeta(metaName) {
     const metas = document.getElementsByTagName("meta");
@@ -28,10 +29,18 @@ function getMeta(metaName) {
 }
 function getSneakers() {
     axios
-        .get(ROOT_URL + "/api/getsneakers?user_id=" + getMeta("user-id"))
+        .get(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"))
         .then((response) => {
-            console.log(response);
-            state.searchSuccess = true;
+            state.sneakers = response.data.sneakers;
+            state.loading = false;
+        });
+}
+
+function deleteSneaker(id) {
+    axios
+        .delete(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"))
+        .then((response) => {
+            state.sneakers = response.data.sneakers;
             state.loading = false;
         });
 }
@@ -51,7 +60,10 @@ function getSneakers() {
             </div>
 
             <div class="container d-flex justify-content-center text-center">
-                <div class="table-responsive col-12 col-md-10">
+                <div
+                    class="table-responsive col-12 col-md-10"
+                    v-if="state.sneakers"
+                >
                     <table class="table table-fit mt-4 align-middle">
                         <thead>
                             <tr>
@@ -63,34 +75,48 @@ function getSneakers() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr
+                                v-for="sneaker in state.sneakers"
+                                :key="sneaker"
+                            >
                                 <th scope="row" class="ms-2">
                                     <img
-                                        src="https://images.stockx.com/images/Air-Jordan-1-Mid-Light-Smoke-Grey-Anthracite-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1643276910"
+                                        :src="sneaker.image"
                                         class="tableImage"
                                         alt="..."
                                     />
                                 </th>
                                 <td>
-                                    <span>Nike air force blabla</span><br />
+                                    <span>{{ sneaker.name }}</span
+                                    ><br />
 
-                                    Style: 1378671
+                                    Style: {{ sneaker.style }}
                                     <br />
-                                    EU: 40
+                                    EU: {{ sneaker.size }}
                                 </td>
 
                                 <td>
-                                    <span>Cost price: 130€</span><br />
-                                    Recommended price: 170€
+                                    <span>Cost price: {{ sneaker.cost }}€</span
+                                    ><br />
+                                    Sell price:
+                                    {{
+                                        Math.floor(
+                                            sneaker.cost *
+                                                (getMeta("user-profit") / 100 +
+                                                    1)
+                                        )
+                                    }}€
                                 </td>
                                 <td>
                                     <img
+                                        v-if="sneaker.restocks"
                                         src="https://restocks.net/favicon.ico"
                                         class="me-1"
                                         style="width: 2rem"
                                         alt="..."
                                     />
                                     <img
+                                        v-if="sneaker.stockx"
                                         src="https://web-assets.stockx.com/static/logo/favicon.ico"
                                         style="width: 2rem"
                                         alt="..."

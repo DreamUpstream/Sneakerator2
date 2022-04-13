@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::prefix('/api')->name('api.')->group(function() {
-    Route::get('/getsneakers', [Controllers\Api\SneakerController::class, 'getSneakers']);
-    Route::post('/storesneaker', [Controllers\Api\SneakerController::class, 'storeSneaker']);
+Route::prefix('/sneakers')->name('sneakers.')->group(function() {
+    Route::get('/', [Controllers\Api\SneakerController::class, 'getSneakers'])->middleware('auth');
+    Route::post('/', [Controllers\Api\SneakerController::class, 'storeSneaker'])->middleware('auth');
+    Route::delete('/', [Controllers\Api\SneakerController::class, 'deleteSneaker'])->middleware('auth');
 });
