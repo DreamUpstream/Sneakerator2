@@ -16,72 +16,72 @@ onMounted(() => {
         <div class="row p-5">
             <div class="col-md-6 col-lg-4 mb-4">
                 <h6 class="mb-3 text-success">
-                    <i class="far fa-paper-plane text-success pe-2"></i> A
-                    simple question?
+                    <i class="far fa-paper-plane text-success pe-2"></i> Can I
+                    get some tokens?
                 </h6>
                 <p>
-                    <strong><u>Absolutely!</u></strong> We work with top payment
-                    companies which guarantees your safety and security. All
-                    billing information is stored on our payment processing
-                    partner.
+                    <strong><u>Absolutely!</u></strong> You just need to pay! We
+                    work with top payment companies which guarantees your safety
+                    and security. All billing information is stored on our
+                    payment processing partner. Just kidding, tokens are free.
                 </p>
             </div>
 
             <div class="col-md-6 col-lg-4 mb-4">
                 <h6 class="mb-3 text-success">
-                    <i class="fas fa-pen-alt text-success pe-2"></i> A question
-                    that is longer then the previous one?
+                    <i class="fas fa-pen-alt text-success pe-2"></i> Can I
+                    change my password?
                 </h6>
                 <p>
-                    <strong><u>Yes, it is possible!</u></strong> You can cancel
-                    your subscription anytime in your account. Once the
-                    subscription is cancelled, you will not be charged next
-                    month.
+                    <strong><u>Yes, it is possible!</u></strong> You can change
+                    your password anytime in your /login route by clicking on
+                    forgot password button. Once the Once you enter your email,
+                    a notification will be sent with the password change link.
                 </p>
             </div>
 
             <div class="col-md-6 col-lg-4 mb-4">
                 <h6 class="mb-3 text-success">
-                    <i class="fas fa-user text-success pe-2"></i> A simple
-                    question?
+                    <i class="fas fa-user text-success pe-2"></i> How to use the
+                    selling dashboard?
                 </h6>
                 <p>
-                    Currently, we only offer monthly subscription. You can
-                    upgrade or cancel your monthly account at any time with no
-                    further obligation.
+                    You can go try out by clicking bunch of stuff and maybe you
+                    will figure it out.
                 </p>
             </div>
 
             <div class="col-md-6 col-lg-4 mb-4">
                 <h6 class="mb-3 text-success">
-                    <i class="fas fa-rocket text-success pe-2"></i> A simple
-                    question?
+                    <i class="fas fa-rocket text-success pe-2"></i> How to use
+                    the analyse section?
                 </h6>
                 <p>
-                    Yes. Go to the billing section of your dashboard and update
-                    your payment information.
+                    Go to the analyse section of your dashboard, search and
+                    click analyse, obviously.
                 </p>
             </div>
 
             <div class="col-md-6 col-lg-4 mb-4">
                 <h6 class="mb-3 text-success">
-                    <i class="fas fa-home text-success pe-2"></i> A simple
-                    question?
+                    <i class="fas fa-home text-success pe-2"></i> I don't have
+                    enough tokens..?
                 </h6>
                 <p>
-                    <strong><u>Unfortunately no</u>.</strong> We do not issue
-                    full or partial refunds for any reason.
+                    <strong><u>Unfortunately, it sucks for you.</u>.</strong> We
+                    do not issue tokens for free, go earn some money and buy
+                    more tokens.
                 </p>
             </div>
 
             <div class="col-md-6 col-lg-4 mb-4">
                 <h6 class="mb-3 text-success">
-                    <i class="fas fa-book-open text-success pe-2"></i> Another
-                    question that is longer than usual
+                    <i class="fas fa-book-open text-success pe-2"></i>Another
+                    question that is not mentioned here?
                 </h6>
                 <p>
-                    Of course! We’re happy to offer a free plan to anyone who
-                    wants to try our service.
+                    Please write a poem with all of your questions and send it
+                    by mail to us, we will happily use it in our fireplaces.
                 </p>
             </div>
         </div>

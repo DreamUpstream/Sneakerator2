@@ -60,7 +60,6 @@ class SneakerController extends Controller
         $user = Models\User::where('id', $request->user_id)->first();
         $user->tokens = $request->amount;
         $user->save();
-        // dd($request);
         return response()->json(array("message"=> compact('user')));
     }
 

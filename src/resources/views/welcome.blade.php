@@ -16,10 +16,9 @@
         />
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">
-                Welcome to all-in-one sneaker reseller dashboard & selling
-                advisor - quickly search and analyze your favorite sneaker
-                models with our world’s most in depth online sneaker sales
-                listing scraper and analyzer tool. Register now to gain access
+                Say hi to all-in-one sneaker reseller dashboard & investing
+                advisor - Sneakerator! Quickly search and analyse your favorite sneakers with our world’s most in depth online sneaker sales
+                listing and analyser tool. Register now to gain access
                 to our early beta platform!
             </p>
         </div>
@@ -33,47 +32,47 @@
 
         <div
             class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5"
-        >
+        >           
+         <div class="col d-flex align-items-start">
+            <img class="col-2 mx-3 mt-1" src="{{asset("storage/img/table.svg")}}" alt="" />
+            <div>
+                <h4 class="fw-bold mb-1">Seller dashboard</h4>
+                <p>
+                    Never miss or forget your owned sneakers with having all details of
+                    your bought and currently on-sale listings in
+                    all-in-one seller dashboard.
+                </p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <img class="col-2 mx-3 mt-1" src="{{asset("storage/img/trend.svg")}}" alt="" />
+            <div>
+                <h4 class="fw-bold mb-1">Analyse price trends</h4>
+                <p>
+                    Receive latest sales data & market information so you could decide
+                    if you should invest in the sneaker (or regret investing!).
+                </p>
+            </div>
+        </div>
             <div class="col d-flex align-items-start">
                 <img class="col-2 mt-1 mx-3" src="{{asset("storage/img/dollar.svg")}}" alt="" />
                 <div>
                     <h4 class="fw-bold mb-1">Find sales volume</h4>
                     <p>
-                        Get current sneaker sales volume in the most popular
-                        sneaker reselling sites by using our web scraper that
-                        provides you with the real-time price lists.
+                        Get real-time sneaker sales volumes in the most popular
+                        sneaker reselling sites by using advanced API's that
+                        provide you with in-depth market info, like bids and asks.
                     </p>
                 </div>
             </div>
-            <div class="col d-flex align-items-start">
-                <img class="col-2 mx-3 mt-1" src="{{asset("storage/img/trend.svg")}}" alt="" />
-                <div>
-                    <h4 class="fw-bold mb-1">Analyze price trends</h4>
-                    <p>
-                        Receive latest sales graphs & data so you could decide
-                        if you should invest in the sneaker faster.
-                    </p>
-                </div>
-            </div>
-            <div class="col d-flex align-items-start">
-                <img class="col-2 mx-3 mt-1" src="{{asset("storage/img/table.svg")}}" alt="" />
-                <div>
-                    <h4 class="fw-bold mb-1">Seller table</h4>
-                    <p>
-                        Never miss or forget anything with having all details of
-                        your bought, incoming, selling, shipped out sneakers in
-                        all-in-one seller dashboard.
-                    </p>
-                </div>
-            </div>
+            
+
             <div class="col d-flex align-items-start">
                 <img class="col-2 mx-3 mt-1" src="{{asset("storage/img/auction.svg")}}" alt="" />
                 <div>
-                    <h4 class="fw-bold mb-1">Auto-undercut</h4>
+                    <h4 class="fw-bold mb-1">Tokens system</h4>
                     <p>
-                        [Coming in final release] Our bot will automatically
-                        undercut your sneaker prices in multiple selling
-                        platforms.
+                        API's that we are using do not like us unfortunately, so we have to keep our request count low. Therefore we have a token system that makes you think twice before spamming buttons!
                     </p>
                 </div>
             </div>

@@ -210,10 +210,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 case 5:
                   content = _context.sent;
-                  console.log(content);
                   _router__WEBPACK_IMPORTED_MODULE_2__["default"].go();
 
-                case 8:
+                case 7:
                 case "end":
                   return _context.stop();
               }

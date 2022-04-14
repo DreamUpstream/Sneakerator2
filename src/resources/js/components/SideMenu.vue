@@ -24,28 +24,22 @@ function addTokens() {
                     <router-link
                         class="nav-link"
                         :to="{
-                            name: 'home',
-                        }"
-                        ><span data-feather="search"> </span>
-                        Analyse</router-link
-                    >
-                </li>
-                <li class="nav-item mt-2">
-                    <router-link
-                        class="nav-link"
-                        :to="{
                             name: 'selling',
                         }"
                         ><span data-feather="dollar-sign"> </span>
                         Selling</router-link
                     >
                 </li>
-                <!-- <li class="nav-item mt-2">
-                    <a class="nav-link" href="#">
-                        <span data-feather="user"></span>
-                        Profile
-                    </a>
-                </li> -->
+                <li class="nav-item mt-2">
+                    <router-link
+                        class="nav-link"
+                        :to="{
+                            name: 'analyse',
+                        }"
+                        ><span data-feather="search"> </span>
+                        Analyse</router-link
+                    >
+                </li>
                 <li class="nav-item mt-2">
                     <router-link
                         class="nav-link"

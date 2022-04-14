@@ -5,7 +5,6 @@ import { useTokensStore } from "../stores/tokens";
 let logoutUrl = ROOT_URL;
 function logout() {
     axios.post(logoutUrl + "/logout").then((response) => {
-        console.log(response);
         window.location.replace(ROOT_URL);
     });
 }

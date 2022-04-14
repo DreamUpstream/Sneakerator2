@@ -103,7 +103,6 @@ function postSneaker() {
                     body: formData,
                 });
                 const content = await rawResponse.json();
-                console.log(content);
                 router.go();
             })();
         });

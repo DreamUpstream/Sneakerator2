@@ -9,13 +9,13 @@ const router = createRouter({
     routes: [
         {
             path: "/",
-            name: "home",
-            component: Dashboard,
-        },
-        {
-            path: "/selling",
             name: "selling",
             component: Selling,
+        },
+        {
+            path: "/analyse",
+            name: "analyse",
+            component: Dashboard,
         },
         {
             path: "/help",
@@ -24,9 +24,5 @@ const router = createRouter({
         },
     ],
 });
-
-// router.afterEach((to, from) => {
-//     feather.replace();
-// });
 
 export default router;
