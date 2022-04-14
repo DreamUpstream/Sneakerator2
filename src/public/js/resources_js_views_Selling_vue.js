@@ -135,16 +135,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       loading: true,
-      sneakers: undefined
-    });
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      getSneakers();
+      sneakers: undefined,
+      secretCode: undefined
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUpdated)(function () {
       feather_icons__WEBPACK_IMPORTED_MODULE_1___default().replace();
@@ -163,17 +162,25 @@ __webpack_require__.r(__webpack_exports__);
       return "";
     }
 
-    function getSneakers() {
-      axios__WEBPACK_IMPORTED_MODULE_2___default().get(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id")).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get(ROOT_URL + "/api/sneakers/login?email=" + getMeta("user-email") + "&password=" + getMeta("user-password")).then(function (response) {
+      state.secretCode = response.data.token;
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"), {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Bearer " + state.secretCode
+        }
+      }).then(function (response) {
         state.sneakers = response.data.sneakers;
         state.loading = false;
       });
-    }
+    });
 
     function deleteSneaker(id) {
-      axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"](ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id")).then(function (response) {
-        state.sneakers = response.data.sneakers;
-        state.loading = false;
+      axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"](ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"), {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Bearer " + state.secretCode
+        }
       });
     }
 
@@ -181,7 +188,6 @@ __webpack_require__.r(__webpack_exports__);
       state: state,
       showModal: showModal,
       getMeta: getMeta,
-      getSneakers: getSneakers,
       deleteSneaker: deleteSneaker,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
@@ -192,7 +198,8 @@ __webpack_require__.r(__webpack_exports__);
       axios: (axios__WEBPACK_IMPORTED_MODULE_2___default()),
       SideMenu: _components_SideMenu_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       Manage: _Manage__WEBPACK_IMPORTED_MODULE_4__["default"],
-      ManageModal: _components_ManageModal__WEBPACK_IMPORTED_MODULE_5__["default"]
+      ManageModal: _components_ManageModal__WEBPACK_IMPORTED_MODULE_5__["default"],
+      inject: vue__WEBPACK_IMPORTED_MODULE_0__.inject
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,

@@ -5,11 +5,12 @@ import axios from "axios";
 import SideMenu from "../components/SideMenu.vue";
 import Manage from "./Manage";
 import ManageModal from "../components/ManageModal";
+import { inject } from "vue";
 
-const state = reactive({ loading: true, sneakers: undefined });
-
-onMounted(() => {
-    getSneakers();
+const state = reactive({
+    loading: true,
+    sneakers: undefined,
+    secretCode: undefined,
 });
 
 onUpdated(() => {
@@ -27,22 +28,36 @@ function getMeta(metaName) {
 
     return "";
 }
-function getSneakers() {
-    axios
-        .get(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"))
-        .then((response) => {
-            state.sneakers = response.data.sneakers;
-            state.loading = false;
-        });
-}
+axios
+    .get(
+        ROOT_URL +
+            "/api/sneakers/login?email=" +
+            getMeta("user-email") +
+            "&password=" +
+            getMeta("user-password")
+    )
+    .then((response) => {
+        state.secretCode = response.data.token;
+        axios
+            .get(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"), {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: "Bearer " + state.secretCode,
+                },
+            })
+            .then((response) => {
+                state.sneakers = response.data.sneakers;
+                state.loading = false;
+            });
+    });
 
 function deleteSneaker(id) {
-    axios
-        .delete(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"))
-        .then((response) => {
-            state.sneakers = response.data.sneakers;
-            state.loading = false;
-        });
+    axios.delete(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"), {
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: "Bearer " + state.secretCode,
+        },
+    });
 }
 </script>
 
