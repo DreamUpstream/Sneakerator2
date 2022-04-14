@@ -6,24 +6,24 @@ listing and analyser tool.
 
 # Features
 
-## Seller dashboard
+### Seller dashboard
 
 Never miss or forget your owned sneakers with having all details of
 your bought and currently on-sale listings in
 all-in-one seller dashboard.
 
-## Analyse price trends
+### Analyse price trends
 
 Receive latest sales data & market information so you could decide
 if you should invest in the sneaker (or regret investing!).
 
-## Find sales volume
+### Find sales volume
 
 Get real-time sneaker sales volumes in the most popular
 sneaker reselling sites by using advanced API's that
 provide you with in-depth market info, like bids and asks.
 
-## Tokens system
+### Tokens system
 
 API's that we are using do not like us unfortunately, so we have to keep our request count low. Therefore we have a token system that makes you think twice before spamming buttons!
 
