@@ -17,7 +17,6 @@ nextTick(() => {
     watch(
         () => props.showModal,
         (state, statePrevious) => {
-            console.log({ state, statePrevious });
             if (state) {
                 myModal.show();
             }
@@ -47,18 +46,7 @@ nextTick(() => {
                 <div class="modal-body">
                     <slot></slot>
                 </div>
-                <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                    >
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        Save changes
-                    </button>
-                </div>
+                <div class="modal-footer"></div>
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 <script setup>
 import axios from "axios";
+
+import { useTokensStore } from "../stores/tokens";
 let logoutUrl = ROOT_URL;
 function logout() {
     axios.post(logoutUrl + "/logout").then((response) => {
@@ -7,6 +9,10 @@ function logout() {
         window.location.replace(ROOT_URL);
     });
 }
+
+const tokensStore = useTokensStore();
+
+tokensStore.get(getMeta("user-id"));
 
 function getMeta(metaName) {
     const metas = document.getElementsByTagName("meta");
@@ -31,7 +37,7 @@ function getMeta(metaName) {
             >
                 {{ getMeta("user-name") }}
                 <span data-feather="database" style="margin-bottom: 2px"></span
-                >{{ getMeta("user-tokens") }}
+                >{{ tokensStore.tokens }}
             </div>
             <button
                 class="navbar-toggler position-absolute d-md-none collapsed"

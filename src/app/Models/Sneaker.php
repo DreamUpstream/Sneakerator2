@@ -15,6 +15,6 @@ class Sneaker extends Model
     }
 
     protected $fillable = [
-        'user_id', 'name', 'stockx', 'restocks', 'image', 'style', 'cost_price'
+        'user_id', 'name', 'stockx', 'size', 'restocks', 'image', 'style', 'cost', 'invoice'
     ];
 }

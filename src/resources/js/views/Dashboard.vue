@@ -1,21 +1,47 @@
 <script setup>
-import { reactive, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import feather from "feather-icons";
 import Chart from "chart.js";
 import axios from "axios";
-import SideMenu from "../components/SideMenu.vue";
+import { useTokensStore } from "../stores/tokens";
+import { useToast } from "vue-toastification";
+
+const tokensStore = useTokensStore();
+const toast = useToast();
+
+import ManageModal from "../components/ManageModal";
 
 onMounted(() => {
     feather.replace();
 });
 
+function removeTokens() {
+    toast.warning("Paid 50 tokens.", {
+        timeout: 5000,
+    });
+    tokensStore.remove(50);
+}
 const state = reactive({
     loading: false,
     searchQuery: "",
     foundResults: undefined,
     searchSuccess: false,
+    marketData: undefined,
 });
 
+function analyse(marketData) {
+    if (tokensStore.tokens >= 50) {
+        removeTokens();
+        showModal.value = true;
+        state.marketData = marketData;
+    } else {
+        toast.error("Not enough tokens...", {
+            timeout: 5000,
+        });
+    }
+}
+
+const showModal = ref(false);
 function search() {
     state.loading = true;
     axios
@@ -94,26 +120,23 @@ function search() {
                                 <br />
                                 {{ state.foundResults && result.styleId }}
                             </p>
-                            <ul class="list-unstyled">
-                                <li>
-                                    🔥 Sales in last 24 hours:
-                                    {{
-                                        state.foundResults &&
-                                        result.market.salesLast72Hours
-                                    }}
-                                </li>
-                                <li>
-                                    💸 Last sale: ${{
-                                        state.foundResults &&
-                                        result.market.lastSale
-                                    }}
-                                </li>
-                            </ul>
+                            <p class="col-md-8 mt-2">
+                                🔥 Sales in last 24 hours:
+                                {{
+                                    state.foundResults &&
+                                    result.market.salesLast72Hours
+                                }}
+                                <br />
+                                💸 Last sale: ${{
+                                    state.foundResults && result.market.lastSale
+                                }}
+                            </p>
                             <button
                                 class="btn btn-success bg-gradient"
                                 type="button"
+                                @click="analyse(result.market)"
                             >
-                                Analyse 🛢️5
+                                Analyse 🛢️50
                             </button>
                         </div>
                     </div>
@@ -121,139 +144,139 @@ function search() {
                 </div>
             </div>
         </div>
-        <!-- <canvas
-            class="my-4 w-100"
-            id="myChart"
-            width="900"
-            height="380"
-        ></canvas> -->
-        <!-- <h2>Section title</h2>
-        <div class="table-responsive">
-            <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Header</th>
-                        <th scope="col">Header</th>
-                        <th scope="col">Header</th>
-                        <th scope="col">Header</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>random</td>
-                        <td>data</td>
-                        <td>placeholder</td>
-                        <td>text</td>
-                    </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>placeholder</td>
-                        <td>irrelevant</td>
-                        <td>visual</td>
-                        <td>layout</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>data</td>
-                        <td>rich</td>
-                        <td>dashboard</td>
-                        <td>tabular</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>information</td>
-                        <td>placeholder</td>
-                        <td>illustrative</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,004</td>
-                        <td>text</td>
-                        <td>random</td>
-                        <td>layout</td>
-                        <td>dashboard</td>
-                    </tr>
-                    <tr>
-                        <td>1,005</td>
-                        <td>dashboard</td>
-                        <td>irrelevant</td>
-                        <td>text</td>
-                        <td>placeholder</td>
-                    </tr>
-                    <tr>
-                        <td>1,006</td>
-                        <td>dashboard</td>
-                        <td>illustrative</td>
-                        <td>rich</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,007</td>
-                        <td>placeholder</td>
-                        <td>tabular</td>
-                        <td>information</td>
-                        <td>irrelevant</td>
-                    </tr>
-                    <tr>
-                        <td>1,008</td>
-                        <td>random</td>
-                        <td>data</td>
-                        <td>placeholder</td>
-                        <td>text</td>
-                    </tr>
-                    <tr>
-                        <td>1,009</td>
-                        <td>placeholder</td>
-                        <td>irrelevant</td>
-                        <td>visual</td>
-                        <td>layout</td>
-                    </tr>
-                    <tr>
-                        <td>1,010</td>
-                        <td>data</td>
-                        <td>rich</td>
-                        <td>dashboard</td>
-                        <td>tabular</td>
-                    </tr>
-                    <tr>
-                        <td>1,011</td>
-                        <td>information</td>
-                        <td>placeholder</td>
-                        <td>illustrative</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,012</td>
-                        <td>text</td>
-                        <td>placeholder</td>
-                        <td>layout</td>
-                        <td>dashboard</td>
-                    </tr>
-                    <tr>
-                        <td>1,013</td>
-                        <td>dashboard</td>
-                        <td>irrelevant</td>
-                        <td>text</td>
-                        <td>visual</td>
-                    </tr>
-                    <tr>
-                        <td>1,014</td>
-                        <td>dashboard</td>
-                        <td>illustrative</td>
-                        <td>rich</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,015</td>
-                        <td>random</td>
-                        <td>tabular</td>
-                        <td>information</td>
-                        <td>text</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
+        <ManageModal
+            :showModal="showModal"
+            @onBootstrapModalClose="showModal = false"
+        >
+            <div class="">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Data</th>
+                            <th scope="col" class="text-center">Values</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Number of bids:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["numberOfBids"]
+                                }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Number of asks:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["numberOfAsks"]
+                                }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">Lowest ask:</td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["lowestAsk"]
+                                }}$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Highest bid:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["highestBid"]
+                                }}$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Lowest ask size:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["lowestAskSize"]
+                                }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Highest bid size:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["highestBidSize"]
+                                }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Annual biggest sale:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["annualHigh"]
+                                }}$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Annual lowest sale:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["annualLow"]
+                                }}$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Sales in the last 72 hours:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["salesLast72Hours"]
+                                }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">Volatility:</td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["volatility"]
+                                }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="text-center">
+                                Total sales in $:
+                            </td>
+                            <td class="text-center">
+                                {{
+                                    state.marketData &&
+                                    state.marketData["totalDollars"]
+                                }}$
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ManageModal>
     </div>
 </template>

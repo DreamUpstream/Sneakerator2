@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreSneakerRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreSneakerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -29,7 +30,8 @@ class StoreSneakerRequest extends FormRequest
             'restocks' => ['required','boolean'],
             'image' => ['required'],
             'style' => ['required', 'max:20'],
-            'cost_price' => ['required', 'integer'],
+            'cost' => ['required', 'integer'],
+            'size' => ['required', 'integer'],
             'user_id' => ['exists:App\Models\User,id'],
         ];
     }

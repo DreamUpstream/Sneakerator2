@@ -1,5 +1,16 @@
 <script setup>
 import { useRoute } from "vue-router";
+import { useToast } from "vue-toastification";
+import { useTokensStore } from "../stores/tokens";
+const toast = useToast();
+
+const tokensStore = useTokensStore();
+function addTokens() {
+    toast.success("Hooray! Free 50 tokens added.", {
+        timeout: 5000,
+    });
+    tokensStore.add(50);
+}
 </script>
 
 <template>
@@ -20,10 +31,6 @@ import { useRoute } from "vue-router";
                     >
                 </li>
                 <li class="nav-item mt-2">
-                    <!-- <a class="nav-link" href="#">
-                        <span data-feather="dollar-sign"></span>
-                        Selling
-                    </a> -->
                     <router-link
                         class="nav-link"
                         :to="{
@@ -33,22 +40,26 @@ import { useRoute } from "vue-router";
                         Selling</router-link
                     >
                 </li>
-                <li class="nav-item mt-2">
+                <!-- <li class="nav-item mt-2">
                     <a class="nav-link" href="#">
                         <span data-feather="user"></span>
                         Profile
                     </a>
+                </li> -->
+                <li class="nav-item mt-2">
+                    <router-link
+                        class="nav-link"
+                        :to="{
+                            name: 'help',
+                        }"
+                        ><span data-feather="help-circle"> </span>
+                        Help</router-link
+                    >
                 </li>
                 <li class="nav-item mt-2">
-                    <a class="nav-link" href="#">
-                        <span data-feather="help-circle"></span>
-                        Help
-                    </a>
-                </li>
-                <li class="nav-item mt-2">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="#" @click="addTokens">
                         <span data-feather="database"></span>
-                        Buy Tokens
+                        Get Tokens
                     </a>
                 </li>
             </ul>

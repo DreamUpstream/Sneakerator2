@@ -1,16 +1,17 @@
 <script setup>
-import { reactive, onMounted, onUpdated, ref, nextTick } from "vue";
+import { reactive, onUpdated, ref } from "vue";
 import feather from "feather-icons";
 import axios from "axios";
-import SideMenu from "../components/SideMenu.vue";
 import Manage from "./Manage";
 import ManageModal from "../components/ManageModal";
-import { inject } from "vue";
+
+let invoiceStorage = ROOT_URL + "/storage/img/invoices/";
 
 const state = reactive({
     loading: true,
     sneakers: undefined,
     secretCode: undefined,
+    nothingFound: false,
 });
 
 onUpdated(() => {
@@ -48,11 +49,18 @@ axios
             .then((response) => {
                 state.sneakers = response.data.sneakers;
                 state.loading = false;
+                if (state.sneakers.length === 0) {
+                    state.nothingFound = true;
+                } else {
+                    state.nothingFound = false;
+                }
             });
     });
 
-function deleteSneaker(id) {
-    axios.delete(ROOT_URL + "/api/sneakers?user_id=" + getMeta("user-id"), {
+function deleteSneaker(event) {
+    const element = document.getElementById(event.target.id);
+    element.remove();
+    axios.delete(ROOT_URL + "/api/sneakers?id=" + event.target.id, {
         headers: {
             "Content-type": "application/json; charset=UTF-8",
             Authorization: "Bearer " + state.secretCode,
@@ -93,6 +101,7 @@ function deleteSneaker(id) {
                             <tr
                                 v-for="sneaker in state.sneakers"
                                 :key="sneaker"
+                                :id="sneaker.id"
                             >
                                 <th scope="row" class="ms-2">
                                     <img
@@ -142,26 +151,34 @@ function deleteSneaker(id) {
                                         class="d-flex flex-row mb-3 justify-content-center"
                                     >
                                         <div>
-                                            <button
-                                                @click="showModal = true"
+                                            <a
                                                 type="button"
                                                 class="btn btn-sm mt-2"
+                                                :href="
+                                                    invoiceStorage +
+                                                    sneaker.invoice
+                                                "
+                                                download
                                             >
                                                 <i
-                                                    data-feather="edit"
-                                                    class="text-warning"
+                                                    data-feather="file-text"
+                                                    class="text-primary"
                                                 >
                                                 </i>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div>
                                             <button
                                                 type="button"
                                                 class="btn btn-sm mt-2"
+                                                :id="sneaker.id"
+                                                @click="deleteSneaker"
                                             >
                                                 <i
                                                     data-feather="trash"
                                                     class="text-danger"
+                                                    :id="sneaker.id"
+                                                    @click="deleteSneaker"
                                                 >
                                                 </i>
                                             </button>
@@ -171,6 +188,7 @@ function deleteSneaker(id) {
                             </tr>
                         </tbody>
                     </table>
+                    <h5 v-if="state.nothingFound">No sneakers found</h5>
                 </div>
             </div>
             <div
@@ -185,6 +203,7 @@ function deleteSneaker(id) {
             :showModal="showModal"
             @onBootstrapModalClose="showModal = false"
         >
-        </ManageModal>
+            <Manage
+        /></ManageModal>
     </div>
 </template>

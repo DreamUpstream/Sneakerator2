@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('name');
             $table->string('style');
+            $table->string('invoice');
             $table->integer('size');
             $table->integer('cost');
             $table->boolean('stockx');

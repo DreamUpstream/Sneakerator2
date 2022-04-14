@@ -7,7 +7,6 @@
     <meta name="user-name" content="{{ Auth::user()->name }}">
     
     <meta name="user-id" content="{{ Auth::user()->id }}">
-    <meta name="user-tokens" content="{{ Auth::user()->tokens }}">
     <meta name="user-profit" content="{{ Auth::user()->profit_margin }}">
     
     <meta name="user-email" content="{{ Auth::user()->email }}">

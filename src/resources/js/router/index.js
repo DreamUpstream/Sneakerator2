@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const Dashboard = () => import("../views/Dashboard.vue");
 const Selling = () => import("../views/Selling.vue");
+const Help = () => import("../views/Help.vue");
 
 const router = createRouter({
     history: createWebHistory("/dashboard"),
@@ -15,6 +16,11 @@ const router = createRouter({
             path: "/selling",
             name: "selling",
             component: Selling,
+        },
+        {
+            path: "/help",
+            name: "help",
+            component: Help,
         },
     ],
 });

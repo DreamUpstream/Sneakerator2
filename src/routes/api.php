@@ -25,4 +25,6 @@ Route::prefix('/sneakers')->name('sneakers.')->group(function() {
     Route::post('/', [Controllers\Api\SneakerController::class, 'storeSneaker'])->middleware('auth:sanctum');
     Route::delete('/', [Controllers\Api\SneakerController::class, 'deleteSneaker'])->middleware('auth:sanctum');
     Route::get('/login', LoginController::class);
+    Route::post('/tokens', [Controllers\Api\SneakerController::class, 'addTokens']);
+    Route::get('/tokens', [Controllers\Api\SneakerController::class, 'getTokens']);
 });
