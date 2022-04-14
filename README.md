@@ -27,7 +27,7 @@ provide you with in-depth market info, like bids and asks.
 
 API's that we are using do not like us unfortunately, so we have to keep our request count low. Therefore we have a token system that makes you think twice before spamming buttons!
 
-# Technical features
+# Used tech-stack:
 
 - Laravel 9
 - Vue 3 SPA + VueRouter + Pinia
@@ -35,6 +35,9 @@ API's that we are using do not like us unfortunately, so we have to keep our req
 - Login, register, email verification and password reset
 - Authentication with Breeze and Sanctum
 - Bootstrap 5
+- MySQL
+- Docker
+- Mailhog
 
 # Installation
 
